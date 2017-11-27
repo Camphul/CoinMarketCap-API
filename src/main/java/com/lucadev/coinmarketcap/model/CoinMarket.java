@@ -1,61 +1,86 @@
 package com.lucadev.coinmarketcap.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Immutable model used to display information about a single market.
+ * Variable names should be self-explanatory. If not read the <a href="https://coinmarketcap.com/api/">API docs</a>.
+ *
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 21-11-17
  */
 @XmlRootElement
-public class CoinMarket {
+public final class CoinMarket {
 
-    @JsonProperty("id")
-    private String id;
+    private final String id;
+    private final String name;
+    private final String symbol;
+    private final int rank;
+    private final double priceUSD;
+    private final double priceBTC;
+    private final double dailyVolumeUSD;
+    private final double marketCapUSD;
+    private final double availableSupply;
+    private final double totalSupply;
+    private final double maxSupply;
+    private final double hourPrecentChange;
+    private final double dayPrecentChange;
+    private final double weekPercentChange;
+    private final long lastUpdated;
 
-    @JsonProperty("name")
-    private String name;
+    /**
+     * Constructor to instantiate a {@code CoinMarket}.
+     * Parameters should be self-explanatory.
+     *
+     * @param id
+     * @param name
+     * @param symbol
+     * @param rank
+     * @param priceUSD
+     * @param priceBTC
+     * @param dailyVolumeUSD
+     * @param marketCapUSD
+     * @param availableSupply
+     * @param totalSupply
+     * @param maxSupply
+     * @param hourPrecentChange
+     * @param dayPrecentChange
+     * @param weekPercentChange
+     * @param lastUpdated
+     */
+    @JsonCreator
+    public CoinMarket(@JsonProperty("id") String id, @JsonProperty("name") String name,
+                      @JsonProperty("symbol") String symbol, @JsonProperty("rank") int rank,
+                      @JsonProperty("price_usd") double priceUSD, @JsonProperty("price_btc") double priceBTC,
+                      @JsonProperty("24h_volume_usd") double dailyVolumeUSD, @JsonProperty("market_cap_usd") double marketCapUSD,
+                      @JsonProperty("available_supply") double availableSupply, @JsonProperty("total_supply") double totalSupply,
+                      @JsonProperty("max_supply") double maxSupply, @JsonProperty("percent_change_1h") double hourPrecentChange,
+                      @JsonProperty("percent_change_24h") double dayPrecentChange, @JsonProperty("percent_change_7d") double weekPercentChange,
+                      @JsonProperty("last_updated") long lastUpdated) {
+        this.id = id;
+        this.name = name;
+        this.symbol = symbol;
+        this.rank = rank;
+        this.priceUSD = priceUSD;
+        this.priceBTC = priceBTC;
+        this.dailyVolumeUSD = dailyVolumeUSD;
+        this.marketCapUSD = marketCapUSD;
+        this.availableSupply = availableSupply;
+        this.totalSupply = totalSupply;
+        this.maxSupply = maxSupply;
+        this.hourPrecentChange = hourPrecentChange;
+        this.dayPrecentChange = dayPrecentChange;
+        this.weekPercentChange = weekPercentChange;
+        this.lastUpdated = lastUpdated;
+    }
 
-    @JsonProperty("symbol")
-    private String symbol;
-
-    @JsonProperty("rank")
-    private int rank;
-
-    @JsonProperty("price_usd")
-    private double priceUSD;
-
-    @JsonProperty("price_btc")
-    private double priceBTC;
-
-    @JsonProperty("24h_volume_usd")
-    private double dailyVolumeUSD;
-
-    @JsonProperty("market_cap_usd")
-    private double marketCapUSD;
-
-    @JsonProperty("available_supply")
-    private double availableSupply;
-
-    @JsonProperty("total_supply")
-    private double totalSupply;
-
-    @JsonProperty("max_supply")
-    private double maxSupply;
-
-    @JsonProperty("percent_change_1h")
-    private double hourPrecentChange;
-
-    @JsonProperty("percent_change_24h")
-    private double dayPrecentChange;
-
-    @JsonProperty("percent_change_7d")
-    private double weekPercentChange;
-
-    @JsonProperty("last_updated")
-    private long lastUpdated;
-
+    /**
+     * IntelliJ IDEA auto-generated equals
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,6 +106,10 @@ public class CoinMarket {
 
     }
 
+    /**
+     * IntelliJ IDEA auto-generated hashCode
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         int result;
