@@ -9,7 +9,7 @@ Execute the following command: `mvn clean install`
 You may then use the maven dependency
 ```
 <dependency>
-    <groupId>com.lucadev.coinmarketcap</groupId>
+    <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
     <version>1.0</version>
 </dependency>
