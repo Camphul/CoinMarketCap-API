@@ -3,8 +3,7 @@ package com.lucadev.coinmarketcap;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 
 /**
- *
- * Example to show usage of the api
+ * Example to show how to use the API. This is not a unit test.
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 21-11-17
  */

@@ -1,6 +1,7 @@
 # CoinMarketCap-API
-An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
+[![Build Status](http://lucadev.com/jenkins/buildStatus/icon?job=CoinMarketCap-API)](https://github.com/Camphul/CoinMarketCap-API)
 
+An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
 ## Installation
 To install this project first make sure you have Java 8 installed. Download or clone the project and open it in your terminal.
 
