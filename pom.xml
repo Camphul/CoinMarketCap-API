@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -8,12 +8,29 @@
     <artifactId>coinmarketcap-api</artifactId>
     <version>1.0</version>
     <packaging>jar</packaging>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/Camphul/CoinMarketCap-API</url>
+    <description>A REST API client specifically developed to connect to the CoinMarketCap API.</description>
+    <licenses>
+        <license>
+            <name>GNU General Public License (GPL) version 3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
     <developers>
         <developer>
             <name>Luca Camphuisen</name>
+            <email>luca.camphuisen@hva.nl</email>
             <url>https://github.com/Camphul</url>
+            <organization>LucaDev</organization>
+            <organizationUrl>http://lucadev.com/</organizationUrl>
         </developer>
     </developers>
+    <scm>
+        <connection>scm:git:git://github.com/Camphul/CoinMarketCap-API.git</connection>
+        <developerConnection>scm:git:ssh://github.com:Camphul/CoinMarketCap-API.git</developerConnection>
+        <url>https://github.com/Camphul/CoinMarketCap-API</url>
+    </scm>
 
     <properties>
         <java.version>1.8</java.version>
