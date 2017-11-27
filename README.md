@@ -33,7 +33,7 @@ System.out.println(market);
 An example implementation can be found in the maven test sources.
 
 ## License
-This project is developed under the GNUv3 license. This license can be found under [LICENSE.txt](LICENSE.txt)
+This project is developed under the GNU GPLv3 license. This license can be found under [LICENSE.txt](LICENSE.txt)
 
 ## Donations
 If you wish to donate to me please use the following addresses:
