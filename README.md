@@ -8,7 +8,7 @@ I have released this library onto maven central:
 <dependency>
     <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
-    <version>1.0</version>
+    <version>1.1</version>
 </dependency>
 ```
 

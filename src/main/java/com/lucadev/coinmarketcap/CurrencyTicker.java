@@ -45,10 +45,14 @@ public class CurrencyTicker implements Ticker<CoinMarket> {
     @Override
     public CoinMarket get() {
         JsonNode json = apiConnector.getJsonNode();
+        /* Request failed so we simply return null */
+        if(json == null) {
+            return null;
+        }
         try {
             return objectMapper.treeToValue(json.get(0), CoinMarket.class);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return null;
     }

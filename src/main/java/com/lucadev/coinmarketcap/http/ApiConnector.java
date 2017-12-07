@@ -8,7 +8,6 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import java.io.IOException;
 
 /**
  * Helper class to support/layer {@link com.lucadev.coinmarketcap.Ticker} implementations with the <a href="https://coinmarketcap.com/api/">REST-service</a>.
@@ -90,10 +89,9 @@ public class ApiConnector {
     public JsonNode getJsonNode() {
         try {
             return objectMapper.readTree(get(String.class));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            return null;
         }
-        return null;
     }
 
 
