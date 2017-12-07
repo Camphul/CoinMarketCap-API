@@ -15,13 +15,15 @@ I have released this library onto maven central:
 ## Usage
 ```java
 //All the markets
-CoinMarketCap.ticker()
-                .setLimit(5)
-                .get()
-                    .getMarkets()
-                    .forEach(System.out::println);
+CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).get();
+coinMarkets.getMarkets().forEach(System.out::println);
 
-//A single selected market
+//find a market
+CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
+System.out.println(bitcoinMarket.getPriceUSD());
+
+System.out.println("Specific Currency:");
+
 CoinMarket market = CoinMarketCap.ticker("litecoin").get();
 System.out.println(market);
 ```

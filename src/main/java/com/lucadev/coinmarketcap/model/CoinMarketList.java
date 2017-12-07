@@ -34,5 +34,19 @@ public class CoinMarketList {
         return markets;
     }
 
+    /**
+     * Find a market in the market list by linear searching through the list.
+     * @param marketId the id of the market such as: bitcoin, litecoin
+     * @return a valid {@link CoinMarket} or null if we could not find a market.
+     */
+    public CoinMarket findMarket(String marketId) {
+        if(marketId == null || marketId.isEmpty()) {
+            return null;
+        }
+        return markets.stream()
+                .filter(market->market.getId().equals(marketId))
+                .findFirst().orElse(null);
+    }
+
 
 }
