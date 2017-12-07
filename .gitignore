@@ -120,6 +120,7 @@ fabric.properties
 
 .idea/
 *.iml
+target/
 
 ### NetBeans ###
 nbproject/private/
