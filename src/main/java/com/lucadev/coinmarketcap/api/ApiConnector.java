@@ -1,6 +1,5 @@
 package com.lucadev.coinmarketcap.api;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lucadev.coinmarketcap.model.ApiResponse;
 
@@ -84,6 +83,7 @@ public class ApiConnector {
 
     /**
      * Get API response
+     *
      * @param clazz
      * @param <T>
      * @return

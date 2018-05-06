@@ -21,8 +21,8 @@ public class PriceQuote {
                       @JsonProperty("volume_24h") double dayVolume,
                       @JsonProperty("market_cap") double marketCap,
                       @JsonProperty("percent_change_1h") double hourChange,
-                      @JsonProperty("percent_change_24h")double dayChange,
-                      @JsonProperty("percent_change_7d")double weekChange) {
+                      @JsonProperty("percent_change_24h") double dayChange,
+                      @JsonProperty("percent_change_7d") double weekChange) {
         this.price = price;
         this.dayVolume = dayVolume;
         this.marketCap = marketCap;

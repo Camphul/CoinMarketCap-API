@@ -35,7 +35,7 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List
     @Override
     public CoinListingsApiResponse getApiResponse() {
         long currentUnix = System.currentTimeMillis();
-        if(cachedResponse == null ||
+        if (cachedResponse == null ||
                 cacheExpiryTimeout <= CACHE_EXPIRY_TIME_NO_CACHE ||
                 currentUnix > (cachedResponse.getTimestamp() +
                         TimeUnit.SECONDS.convert(cacheExpiryTimeout, TimeUnit.MILLISECONDS))) {
@@ -51,6 +51,7 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List
 
     /**
      * After how many time units should we refresh our cache
+     *
      * @param cacheExpiryTimeout
      * @param timeUnit
      */

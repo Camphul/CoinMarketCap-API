@@ -26,7 +26,7 @@ public final class CoinMarket {
     private final double circulatingSupply;
     private final double totalSupply;
     private final double maxSupply;
-    private final Map<String,PriceQuote> priceQuotes;
+    private final Map<String, PriceQuote> priceQuotes;
     private final long lastUpdated;
 
     /**
@@ -44,7 +44,7 @@ public final class CoinMarket {
                       @JsonProperty("rank") int rank, @JsonProperty("circulating_supply") double circulatingSupply,
                       @JsonProperty("total_supply") double totalSupply,
                       @JsonProperty("max_supply") double maxSupply,
-                      @JsonProperty("quotes") Map<String,PriceQuote> priceQuotes,
+                      @JsonProperty("quotes") Map<String, PriceQuote> priceQuotes,
                       @JsonProperty("last_updated") long lastUpdated) {
         this.id = id;
         this.name = name;
@@ -90,7 +90,7 @@ public final class CoinMarket {
         return maxSupply;
     }
 
-    public Map<String,PriceQuote> getPriceQuotes() {
+    public Map<String, PriceQuote> getPriceQuotes() {
         return priceQuotes;
     }
 

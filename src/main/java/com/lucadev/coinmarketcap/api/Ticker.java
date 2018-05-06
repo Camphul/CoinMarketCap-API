@@ -17,6 +17,7 @@ public interface Ticker<T extends ApiResponse<?>, E> {
      * @return a full api response containing our requested information.
      */
     T getApiResponse();
+
     /**
      * Obtain a usable model from the ticker implementation.
      *

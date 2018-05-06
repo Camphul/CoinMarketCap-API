@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 /**
  * Wrapper to manage a list of Coinlistings
+ *
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>
  * @since 6-5-18
  */

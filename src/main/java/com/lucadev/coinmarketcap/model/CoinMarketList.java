@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 public class CoinMarketList implements List<CoinMarket> {
 
     private final List<CoinMarket> marketList;
+
     /**
      * Instantiate the model with the required arguments.
      *

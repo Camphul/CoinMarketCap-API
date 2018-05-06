@@ -28,13 +28,14 @@ public abstract class ApiResponse<T> {
     public ApiResponse(T data, Map<String, Object> metadata) {
         this.data = data;
         this.metadata = metadata;
-        if(hasError()) {
+        if (hasError()) {
             throw new ApiResponseException(this);
         }
     }
 
     /**
      * Actual data we are probably interested in.
+     *
      * @return
      */
     public T getData() {
@@ -43,6 +44,7 @@ public abstract class ApiResponse<T> {
 
     /**
      * Metadata info map
+     *
      * @return
      */
     public Map<String, Object> getMetadata() {
@@ -60,6 +62,7 @@ public abstract class ApiResponse<T> {
 
     /**
      * Check if the response contains an error
+     *
      * @return
      */
     public boolean hasError() {
@@ -68,10 +71,11 @@ public abstract class ApiResponse<T> {
 
     /**
      * Unix timestamp of request
+     *
      * @return
      */
     public long getTimestamp() {
-        return ((Integer)metadata.get(KEY_METADATA_TIMESTAMP)).longValue();
+        return ((Integer) metadata.get(KEY_METADATA_TIMESTAMP)).longValue();
     }
 
 }
