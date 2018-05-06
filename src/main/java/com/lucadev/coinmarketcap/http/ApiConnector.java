@@ -20,7 +20,7 @@ public class ApiConnector {
     /**
      * API version that is supported.
      */
-    public static final String API_VERSION = "v1";
+    public static final String API_VERSION = "v2";
     /**
      * Base URL for API endpoints.
      */
