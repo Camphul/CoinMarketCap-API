@@ -10,19 +10,20 @@ import java.util.Map;
  */
 public class ApiResponse<T> {
 
-    protected final Map<String, Object> metadata;
-    protected final T data;
     public static final String PROPERTY_DATA = "data";
     public static final String PROPERTY_METADATA = "metadata";
     public static final String KEY_METADATA_ERROR = "error";
     public static final String KEY_METADATA_TIMESTAMP = "timestamp";
+    protected final Map<String, Object> metadata;
+    protected final T data;
 
     /**
      * Constructs the response model.
-     * @param data the response data.
+     *
+     * @param data     the response data.
      * @param metadata the metadata object in the response. Inside a map.
      */
-    public ApiResponse(T data, Map<String,Object> metadata) {
+    public ApiResponse(T data, Map<String, Object> metadata) {
         this.data = data;
         this.metadata = metadata;
     }
@@ -37,6 +38,7 @@ public class ApiResponse<T> {
 
     /**
      * Get the erro
+     *
      * @return
      */
     public String getError() {
@@ -44,7 +46,7 @@ public class ApiResponse<T> {
     }
 
     public long getTimestamp() {
-        return Long.parseLong((String)metadata.get(KEY_METADATA_TIMESTAMP));
+        return Long.parseLong((String) metadata.get(KEY_METADATA_TIMESTAMP));
     }
 
 }

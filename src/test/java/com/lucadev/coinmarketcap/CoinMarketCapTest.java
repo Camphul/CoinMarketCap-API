@@ -22,11 +22,11 @@ public class CoinMarketCapTest {
     }
 
     /**
-     * Test if the {@link CoinMarketCap#ticker(String)} method returns a not-null value.
+     * Test if the {@link CoinMarketCap#ticker(long)} method returns a not-null value.
      */
     @Test
     public void shouldNotGetNullTicker() {
-        CurrencyTicker currencyTicker = CoinMarketCap.ticker("bitcoin");
+        CurrencyTicker currencyTicker = CoinMarketCap.ticker(1);
         assertNotNull(currencyTicker);
     }
 

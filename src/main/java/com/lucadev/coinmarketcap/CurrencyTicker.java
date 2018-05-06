@@ -5,12 +5,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lucadev.coinmarketcap.http.ApiConnector;
 import com.lucadev.coinmarketcap.model.CoinMarket;
+import com.lucadev.coinmarketcap.model.CoinMarketApiResponse;
 
 /**
  * A price ticker/fetcher for a single given market. This class implements the {@link Ticker<CoinMarket>} interface.
  * This class implements the <a href="https://coinmarketcap.com/api/">/ticker/{id}</a> endpoint as described.
  * <p>
- * Instances of this class should be obtained through {@link CoinMarketCap#ticker(String)}.
+ * Instances of this class should be obtained through {@link CoinMarketCap#ticker(Long)}.
  *
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 19-11-17
@@ -18,21 +19,16 @@ import com.lucadev.coinmarketcap.model.CoinMarket;
 public class CurrencyTicker implements Ticker<CoinMarket> {
 
     private ApiConnector apiConnector;
-    private ObjectMapper objectMapper;
 
     /**
      * Create the ticker with the specified market we want to fetch.
      *
-     * @param coinName the market identifier. Examples of these are(cAsE-SentIvE): bitcoin, litecoin, ethereum, etc...
+     * @param marketId the market id which is obtained through listings.
      * @throws IllegalArgumentException when the {@code coinName} argumeter that was passed is either null or empty.
      *                                  This does not check for invalid coin names.
      */
-    public CurrencyTicker(String coinName) {
-        if (coinName == null || coinName.isEmpty()) {
-            throw new IllegalArgumentException("coinName parameter may not be null or empty.");
-        }
-        objectMapper = new ObjectMapper();
-        apiConnector = new ApiConnector().path("ticker/" + coinName);
+    public CurrencyTicker(long marketId) {
+        apiConnector = new ApiConnector().path("ticker/" + marketId);
     }
 
     /**
@@ -44,17 +40,7 @@ public class CurrencyTicker implements Ticker<CoinMarket> {
      */
     @Override
     public CoinMarket get() {
-        JsonNode json = apiConnector.getJsonNode();
-        /* Request failed so we simply return null */
-        if(json == null) {
-            return null;
-        }
-        try {
-            return objectMapper.treeToValue(json.get(0), CoinMarket.class);
-        } catch (JsonProcessingException e) {
-            System.err.println(e.getMessage());
-        }
-        return null;
+        return apiConnector.get(CoinMarketApiResponse.class).getData();
     }
 
 }

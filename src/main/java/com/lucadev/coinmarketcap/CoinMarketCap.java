@@ -30,12 +30,13 @@ public final class CoinMarketCap {
      * @return a {@code /ticker/{id}/} API implementation.
      * @see <a href="https://coinmarketcap.com/api/">/ticker/{id} endpoint documentation.</a>
      */
-    public static CurrencyTicker ticker(String currency) {
-        return new CurrencyTicker(currency);
+    public static CurrencyTicker ticker(long marketId) {
+        return new CurrencyTicker(marketId);
     }
 
     /**
      * Coin listings
+     *
      * @return
      */
     public static List<CoinListing> listings() {

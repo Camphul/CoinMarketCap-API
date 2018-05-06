@@ -6,9 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lucadev.coinmarketcap.http.ApiConnector;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
+import com.lucadev.coinmarketcap.model.CoinMarketListApiResponse;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * A price ticker/fetcher for multiple markets. This class implements the {@link Ticker< CoinMarketList >} interface.
@@ -29,7 +32,7 @@ public class GlobalTicker implements Ticker<CoinMarketList> {
      * It is recommended to use {@link CoinMarketCap#ticker()} to build this class.
      */
     public GlobalTicker() {
-        apiConnector = new ApiConnector();
+        apiConnector = new ApiConnector().path("/ticker");
         objectMapper = new ObjectMapper();
     }
 
@@ -66,16 +69,9 @@ public class GlobalTicker implements Ticker<CoinMarketList> {
      */
     @Override
     public CoinMarketList get() {
-        JsonNode json = apiConnector.path("ticker").getJsonNode();
-        List<CoinMarket> markets = new ArrayList<>();
-        for (JsonNode jsonNode : json) {
-            try {
-                markets.add(objectMapper.treeToValue(jsonNode, CoinMarket.class));
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        }
-
+        CoinMarketListApiResponse apiResponse = apiConnector.get(CoinMarketListApiResponse.class);
+        Map<String, CoinMarket> marketMap = apiResponse.getData();
+        Collection<CoinMarket> markets = marketMap.values();
         return new CoinMarketList(markets);
     }
 

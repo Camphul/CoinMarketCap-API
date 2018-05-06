@@ -2,13 +2,15 @@
 [![Build Status](http://lucadev.com/jenkins/buildStatus/icon?job=CoinMarketCap-API)](https://github.com/Camphul/CoinMarketCap-API)
 
 An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
+
+We now use the new api v2 instead of v1
 ## Installation
 I have released this library onto maven central:
 ```
 <dependency>
     <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
-    <version>1.2</version>
+    <version>2.0</version>
 </dependency>
 ```
 

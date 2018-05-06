@@ -1,6 +1,5 @@
 package com.lucadev.coinmarketcap;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lucadev.coinmarketcap.http.ApiConnector;
 import com.lucadev.coinmarketcap.model.CoinListingsApiResponse;
 

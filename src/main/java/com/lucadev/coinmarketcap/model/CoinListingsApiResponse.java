@@ -8,6 +8,7 @@ import java.util.Map;
 
 /**
  * Model for apibase/listings endpoint
+ *
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>
  * @since 6-5-18
  */
@@ -31,6 +32,6 @@ public class CoinListingsApiResponse extends ApiResponse<List<CoinListing>> {
      * @return amount of listings
      */
     public long count() {
-        return Long.parseLong((String)getMetadata().get(KEY_METADATA_LISTING_COUNT));
+        return Long.parseLong((String) getMetadata().get(KEY_METADATA_LISTING_COUNT));
     }
 }

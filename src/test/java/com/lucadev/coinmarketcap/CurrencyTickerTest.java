@@ -14,11 +14,11 @@ import static org.junit.Assert.*;
 public class CurrencyTickerTest {
 
     /**
-     * Should get a valid coin
+     * Should get a valid coin, assumes bitcoin
      */
     @Test
     public void shouldGetValidCoinMarketResponse() {
-        String expectedMarket = "bitcoin";
+        long expectedMarket = 1;
         CoinMarket market = CoinMarketCap.ticker(expectedMarket).get();
         assertNotNull(market);
         assertEquals(expectedMarket, market.getId());
@@ -29,7 +29,7 @@ public class CurrencyTickerTest {
      */
     @Test
     public void shouldGetNullMarketOnInvalidMarketId() {
-        String marketId = "abcdefhijklmnop";
+        long marketId = -1;
         CoinMarket market = CoinMarketCap.ticker(marketId).get();
         assertNull(market);
     }

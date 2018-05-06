@@ -1,7 +1,10 @@
 package com.lucadev.coinmarketcap;
 
+import com.lucadev.coinmarketcap.model.CoinListing;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
+
+import java.util.List;
 
 /**
  * Example to show how to use the API. This is not a unit test.
@@ -16,12 +19,17 @@ public class CoinMarketCapExample {
 
         //find a market
         CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
-        System.out.println(bitcoinMarket.getPriceUSD());
+        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
 
         System.out.println("Specific Currency:");
 
-        CoinMarket market = CoinMarketCap.ticker("litecoin").get();
+        CoinMarket market = CoinMarketCap.ticker(1).get();
         System.out.println(market);
+
+        System.out.println("Listings: ");
+
+        List<CoinListing> listings = CoinMarketCap.listings();
+        listings.forEach(System.out::println);
     }
 
 }
