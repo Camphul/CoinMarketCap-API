@@ -2,8 +2,10 @@ package com.lucadev.coinmarketcap.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lucadev.coinmarketcap.Currency;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -92,8 +94,20 @@ public final class CoinMarket {
         return priceQuotes;
     }
 
+    public PriceQuote getPriceQuote(Currency currency) {
+        return getPriceQuotes().get(currency.name());
+    }
+
+    public PriceQuote getUSDPriceQuote() {
+        return getPriceQuote(Currency.USD);
+    }
+
     public long getLastUpdated() {
         return lastUpdated;
+    }
+
+    public Date getLastUpdatedDate() {
+        return new Date(getLastUpdated());
     }
 
     @Override

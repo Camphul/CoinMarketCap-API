@@ -1,9 +1,6 @@
-package com.lucadev.coinmarketcap;
+package com.lucadev.coinmarketcap.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lucadev.coinmarketcap.http.ApiConnector;
+import com.lucadev.coinmarketcap.CoinMarketCap;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import com.lucadev.coinmarketcap.model.CoinMarketApiResponse;
 
@@ -16,7 +13,7 @@ import com.lucadev.coinmarketcap.model.CoinMarketApiResponse;
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 19-11-17
  */
-public class CurrencyTicker implements Ticker<CoinMarket> {
+public class CurrencyTicker implements Ticker<CoinMarketApiResponse, CoinMarket> {
 
     private ApiConnector apiConnector;
 
@@ -36,11 +33,23 @@ public class CurrencyTicker implements Ticker<CoinMarket> {
      *
      * @return a {@link CoinMarket} response containing market information
      * @see Ticker#get()
+     * @see CoinMarketApiResponse
+     */
+    @Override
+    public CoinMarketApiResponse getApiResponse() {
+        return apiConnector.getApiResponse(CoinMarketApiResponse.class);
+    }
+
+    /**
+     * Obtain current market information of the specified currency.
+     *
+     * @return a {@link CoinMarket} response containing market information
+     * @see Ticker#get()
      * @see CoinMarket
      */
     @Override
     public CoinMarket get() {
-        return apiConnector.get(CoinMarketApiResponse.class).getData();
+        return getApiResponse().getData();
     }
 
 }

@@ -1,8 +1,8 @@
 package com.lucadev.coinmarketcap;
 
-import com.lucadev.coinmarketcap.model.CoinListing;
-
-import java.util.List;
+import com.lucadev.coinmarketcap.api.CoinListingsFetcher;
+import com.lucadev.coinmarketcap.api.CurrencyTicker;
+import com.lucadev.coinmarketcap.api.GlobalTicker;
 
 /**
  * Base API class used to access basic API functionality.
@@ -39,8 +39,8 @@ public final class CoinMarketCap {
      *
      * @return
      */
-    public static List<CoinListing> listings() {
-        return COIN_LISTING_FETCHER.get().getData();
+    public static CoinListingsFetcher listings() {
+        return COIN_LISTING_FETCHER;
     }
 
 }

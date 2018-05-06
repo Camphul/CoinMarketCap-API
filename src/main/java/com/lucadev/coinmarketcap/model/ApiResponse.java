@@ -1,5 +1,7 @@
 package com.lucadev.coinmarketcap.model;
 
+import com.lucadev.coinmarketcap.api.ApiResponseException;
+
 import java.util.Map;
 
 /**
@@ -8,10 +10,10 @@ import java.util.Map;
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>
  * @since 6-5-18
  */
-public class ApiResponse<T> {
+public abstract class ApiResponse<T> {
 
-    public static final String PROPERTY_DATA = "data";
-    public static final String PROPERTY_METADATA = "metadata";
+    public static final String JSON_DATA_PROPERTY = "data";
+    public static final String JSON_METADATA_PROPERTY = "metadata";
     public static final String KEY_METADATA_ERROR = "error";
     public static final String KEY_METADATA_TIMESTAMP = "timestamp";
     protected final Map<String, Object> metadata;
@@ -26,12 +28,23 @@ public class ApiResponse<T> {
     public ApiResponse(T data, Map<String, Object> metadata) {
         this.data = data;
         this.metadata = metadata;
+        if(hasError()) {
+            throw new ApiResponseException(this);
+        }
     }
 
+    /**
+     * Actual data we are probably interested in.
+     * @return
+     */
     public T getData() {
         return data;
     }
 
+    /**
+     * Metadata info map
+     * @return
+     */
     public Map<String, Object> getMetadata() {
         return metadata;
     }
@@ -45,8 +58,20 @@ public class ApiResponse<T> {
         return String.valueOf(metadata.get(KEY_METADATA_ERROR));
     }
 
+    /**
+     * Check if the response contains an error
+     * @return
+     */
+    public boolean hasError() {
+        return metadata.containsKey(KEY_METADATA_ERROR) && metadata.get(KEY_METADATA_ERROR) != null;
+    }
+
+    /**
+     * Unix timestamp of request
+     * @return
+     */
     public long getTimestamp() {
-        return Long.parseLong((String) metadata.get(KEY_METADATA_TIMESTAMP));
+        return ((Integer)metadata.get(KEY_METADATA_TIMESTAMP)).longValue();
     }
 
 }

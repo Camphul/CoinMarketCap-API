@@ -3,14 +3,14 @@
 
 An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
 
-We now use the new api v2 instead of v1
+Currently working on support for CMC API v2!!
 ## Installation
 I have released this library onto maven central:
 ```
 <dependency>
     <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
-    <version>2.0</version>
+    <version>1.2</version>
 </dependency>
 ```
 

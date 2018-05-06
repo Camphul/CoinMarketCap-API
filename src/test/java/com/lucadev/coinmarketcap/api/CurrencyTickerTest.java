@@ -1,5 +1,7 @@
-package com.lucadev.coinmarketcap;
+package com.lucadev.coinmarketcap.api;
 
+import com.lucadev.coinmarketcap.CoinMarketCap;
+import com.lucadev.coinmarketcap.api.CurrencyTicker;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import org.junit.Test;
 
@@ -27,7 +29,7 @@ public class CurrencyTickerTest {
     /**
      * What happens when we enter an invalid market.
      */
-    @Test
+    @Test(expected = javax.ws.rs.NotFoundException.class)
     public void shouldGetNullMarketOnInvalidMarketId() {
         long marketId = -1;
         CoinMarket market = CoinMarketCap.ticker(marketId).get();

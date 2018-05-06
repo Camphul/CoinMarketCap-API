@@ -20,8 +20,8 @@ public class CoinMarketApiResponse extends ApiResponse<CoinMarket> {
      * @param metadata the metadata object in the response. Inside a map.
      */
     @JsonCreator
-    public CoinMarketApiResponse(@JsonProperty(PROPERTY_DATA) CoinMarket data,
-                                 @JsonProperty(PROPERTY_METADATA) Map<String, Object> metadata) {
+    public CoinMarketApiResponse(@JsonProperty(JSON_DATA_PROPERTY) CoinMarket data,
+                                 @JsonProperty(JSON_METADATA_PROPERTY) Map<String, Object> metadata) {
         super(data, metadata);
     }
 }

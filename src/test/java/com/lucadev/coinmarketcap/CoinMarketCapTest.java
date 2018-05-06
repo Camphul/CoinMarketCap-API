@@ -1,5 +1,7 @@
 package com.lucadev.coinmarketcap;
 
+import com.lucadev.coinmarketcap.api.CurrencyTicker;
+import com.lucadev.coinmarketcap.api.GlobalTicker;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

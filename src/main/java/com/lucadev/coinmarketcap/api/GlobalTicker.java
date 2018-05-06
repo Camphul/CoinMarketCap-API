@@ -1,17 +1,8 @@
-package com.lucadev.coinmarketcap;
+package com.lucadev.coinmarketcap.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lucadev.coinmarketcap.http.ApiConnector;
-import com.lucadev.coinmarketcap.model.CoinMarket;
+import com.lucadev.coinmarketcap.CoinMarketCap;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
 import com.lucadev.coinmarketcap.model.CoinMarketListApiResponse;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A price ticker/fetcher for multiple markets. This class implements the {@link Ticker< CoinMarketList >} interface.
@@ -22,10 +13,9 @@ import java.util.Map;
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 19-11-17
  */
-public class GlobalTicker implements Ticker<CoinMarketList> {
+public class GlobalTicker implements Ticker<CoinMarketListApiResponse, CoinMarketList> {
 
     private ApiConnector apiConnector;
-    private ObjectMapper objectMapper;
 
     /**
      * Instantiate a new {@code GlobalTicker}.
@@ -33,7 +23,6 @@ public class GlobalTicker implements Ticker<CoinMarketList> {
      */
     public GlobalTicker() {
         apiConnector = new ApiConnector().path("/ticker");
-        objectMapper = new ObjectMapper();
     }
 
     /**
@@ -68,11 +57,20 @@ public class GlobalTicker implements Ticker<CoinMarketList> {
      * @see CoinMarketList
      */
     @Override
+    public CoinMarketListApiResponse getApiResponse() {
+        return apiConnector.getApiResponse(CoinMarketListApiResponse.class);
+    }
+
+    /**
+     * Obtain market information of multiple markets.
+     *
+     * @return a {@link CoinMarketList} response containing our markets.
+     * @see Ticker#get()
+     * @see CoinMarketList
+     */
+    @Override
     public CoinMarketList get() {
-        CoinMarketListApiResponse apiResponse = apiConnector.get(CoinMarketListApiResponse.class);
-        Map<String, CoinMarket> marketMap = apiResponse.getData();
-        Collection<CoinMarket> markets = marketMap.values();
-        return new CoinMarketList(markets);
+        return new CoinMarketList(getApiResponse().getData().values());
     }
 
 

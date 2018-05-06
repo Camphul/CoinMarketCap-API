@@ -4,7 +4,9 @@ import com.lucadev.coinmarketcap.model.CoinListing;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Example to show how to use the API. This is not a unit test.
@@ -14,22 +16,36 @@ import java.util.List;
 public class CoinMarketCapExample {
 
     public static void main(String[] args) {
-        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).get();
-        coinMarkets.getMarkets().forEach(System.out::println);
 
-        //find a market
-        CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
-        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
-
-        System.out.println("Specific Currency:");
-
-        CoinMarket market = CoinMarketCap.ticker(1).get();
-        System.out.println(market);
-
-        System.out.println("Listings: ");
-
-        List<CoinListing> listings = CoinMarketCap.listings();
-        listings.forEach(System.out::println);
+        measureListingRequestTime();
+        measureListingRequestTime();
+        measureListingRequestTime();
+        measureListingRequestTime();
+        measureListingRequestTime();
+        measureListingRequestTime();
+//        System.out.println(Arrays.toString(Currency.values()));
+//        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).get();
+//        coinMarkets.getMarkets().forEach(System.out::println);
+//
+//        //find a market
+//        CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
+//        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
+//
+//        System.out.println("Specific Currency:");
+//
+//        CoinMarket market = CoinMarketCap.ticker(1).get();
+//        System.out.println(market);
+//
+//        System.out.println("Listings: ");
+//
+//        List<CoinListing> listings = CoinMarketCap.listings();
+//        listings.forEach(System.out::println);
     }
 
+    public static void measureListingRequestTime() {
+        long start = System.currentTimeMillis();
+        List<CoinListing> listings = CoinMarketCap.listings().get();
+        long end = System.currentTimeMillis();
+        System.out.println("Fetch listings took: " + (end-start) + "ms");
+    }
 }

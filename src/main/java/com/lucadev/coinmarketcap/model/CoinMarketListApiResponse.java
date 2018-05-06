@@ -3,7 +3,6 @@ package com.lucadev.coinmarketcap.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,8 +18,8 @@ public class CoinMarketListApiResponse extends ApiResponse<Map<String, CoinMarke
      * @param metadata the metadata object in the response. Inside a map.
      */
     @JsonCreator
-    public CoinMarketListApiResponse(@JsonProperty(PROPERTY_DATA) Map<String, CoinMarket> data,
-                                     @JsonProperty(PROPERTY_METADATA) Map<String, Object> metadata) {
+    public CoinMarketListApiResponse(@JsonProperty(JSON_DATA_PROPERTY) Map<String, CoinMarket> data,
+                                     @JsonProperty(JSON_METADATA_PROPERTY) Map<String, Object> metadata) {
         super(data, metadata);
     }
 }

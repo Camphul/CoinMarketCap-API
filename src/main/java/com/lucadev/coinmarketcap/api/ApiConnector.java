@@ -1,7 +1,8 @@
-package com.lucadev.coinmarketcap.http;
+package com.lucadev.coinmarketcap.api;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lucadev.coinmarketcap.model.ApiResponse;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -10,7 +11,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 /**
- * Helper class to support/layer {@link com.lucadev.coinmarketcap.Ticker} implementations with the <a href="https://coinmarketcap.com/api/">REST-service</a>.
+ * Helper class to support/layer {@link Ticker} implementations with the <a href="https://coinmarketcap.com/api/">REST-service</a>.
  *
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 19-11-17
@@ -82,17 +83,13 @@ public class ApiConnector {
     }
 
     /**
-     * Obtain a {@link JsonNode} by doing a HTTP GET request.
-     *
-     * @return a {@link JsonNode} instance containing our response data.
+     * Get API response
+     * @param clazz
+     * @param <T>
+     * @return
      */
-    public JsonNode getJsonNode() {
-        try {
-            return objectMapper.readTree(get(String.class));
-        } catch (Exception e) {
-            return null;
-        }
+    public <T extends ApiResponse<?>> T getApiResponse(Class<T> clazz) {
+        return prepareRequest().get(clazz);
     }
-
 
 }
