@@ -17,35 +17,30 @@ public class CoinMarketCapExample {
 
     public static void main(String[] args) {
 
+        System.out.println(Arrays.toString(Currency.values()));
+        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).convert(Currency.EUR).get();
+        coinMarkets.forEach(System.out::println);
+
+        //find a market
+        CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
+        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
+
+        System.out.println("Specific Currency:");
+
+        CoinMarket market = CoinMarketCap.ticker(1).get();
+        System.out.println(market);
+
+        System.out.println("Listings: ");
+
         measureListingRequestTime();
         measureListingRequestTime();
         measureListingRequestTime();
-        measureListingRequestTime();
-        measureListingRequestTime();
-        measureListingRequestTime();
-//        System.out.println(Arrays.toString(Currency.values()));
-//        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).get();
-//        coinMarkets.getMarkets().forEach(System.out::println);
-//
-//        //find a market
-//        CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
-//        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
-//
-//        System.out.println("Specific Currency:");
-//
-//        CoinMarket market = CoinMarketCap.ticker(1).get();
-//        System.out.println(market);
-//
-//        System.out.println("Listings: ");
-//
-//        List<CoinListing> listings = CoinMarketCap.listings();
-//        listings.forEach(System.out::println);
     }
 
     public static void measureListingRequestTime() {
         long start = System.currentTimeMillis();
         List<CoinListing> listings = CoinMarketCap.listings().get();
         long end = System.currentTimeMillis();
-        System.out.println("Fetch listings took: " + (end-start) + "ms");
+        System.out.println("Fetch listings took: " + (end-start) + "ms, size: " + listings.size());
     }
 }

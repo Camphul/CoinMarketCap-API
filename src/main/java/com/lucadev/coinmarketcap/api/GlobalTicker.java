@@ -1,6 +1,7 @@
 package com.lucadev.coinmarketcap.api;
 
 import com.lucadev.coinmarketcap.CoinMarketCap;
+import com.lucadev.coinmarketcap.Currency;
 import com.lucadev.coinmarketcap.model.CoinMarketList;
 import com.lucadev.coinmarketcap.model.CoinMarketListApiResponse;
 
@@ -46,6 +47,17 @@ public class GlobalTicker implements Ticker<CoinMarketListApiResponse, CoinMarke
      */
     public GlobalTicker setLimit(int limit) {
         apiConnector = apiConnector.queryParam("limit", limit);
+        return this;
+    }
+
+    /**
+     * Add a price quote for the given currency
+     * @param currency currency to convert price to
+     * @return the current builder
+     * @see <a href="https://coinmarketcap.com/api/">REST API Documentation</a> for more detailed documentation regarding the REST endpoint.
+     */
+    public GlobalTicker convert(Currency currency) {
+        apiConnector = apiConnector.queryParam("convert", currency.name());
         return this;
     }
 

@@ -1,6 +1,7 @@
 package com.lucadev.coinmarketcap.api;
 
 import com.lucadev.coinmarketcap.CoinMarketCap;
+import com.lucadev.coinmarketcap.Currency;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import com.lucadev.coinmarketcap.model.CoinMarketApiResponse;
 
@@ -26,6 +27,17 @@ public class CurrencyTicker implements Ticker<CoinMarketApiResponse, CoinMarket>
      */
     public CurrencyTicker(long marketId) {
         apiConnector = new ApiConnector().path("ticker/" + marketId);
+    }
+
+    /**
+     * Add a price quote for the given currency
+     * @param currency currency to convert price to
+     * @return the current builder
+     * @see <a href="https://coinmarketcap.com/api/">REST API Documentation</a> for more detailed documentation regarding the REST endpoint.
+     */
+    public CurrencyTicker convert(Currency currency) {
+        apiConnector = apiConnector.queryParam("convert", currency.name());
+        return this;
     }
 
     /**
