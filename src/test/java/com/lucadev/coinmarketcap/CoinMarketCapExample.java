@@ -23,7 +23,7 @@ public class CoinMarketCapExample {
 
         //find a market
         CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
-        System.out.println(bitcoinMarket.getPriceQuotes().get("USD").getPrice());
+        System.out.println(bitcoinMarket.getUSDPriceQuote().getPrice());
 
         System.out.println("Specific Currency:");
 
