@@ -35,11 +35,12 @@ public class CoinMarketCapExample {
         measureListingRequestTime();
         measureListingRequestTime();
         measureListingRequestTime();
+        measureListingRequestTime();
     }
 
     public static void measureListingRequestTime() {
         long start = System.currentTimeMillis();
-        List<CoinListing> listings = CoinMarketCap.listings().get();
+        List<CoinListing> listings = CoinMarketCap.listings().cacheExpiryTimeout(600, TimeUnit.SECONDS).get();
         long end = System.currentTimeMillis();
         System.out.println("Fetch listings took: " + (end-start) + "ms, size: " + listings.size());
     }

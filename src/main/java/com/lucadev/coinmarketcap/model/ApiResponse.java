@@ -14,8 +14,8 @@ public abstract class ApiResponse<T> {
 
     public static final String JSON_DATA_PROPERTY = "data";
     public static final String JSON_METADATA_PROPERTY = "metadata";
-    public static final String KEY_METADATA_ERROR = "error";
-    public static final String KEY_METADATA_TIMESTAMP = "timestamp";
+    public static final String METADATA_ERROR_KEY = "error";
+    public static final String METADATA_TIMESTAMP_KEY = "timestamp";
     protected final Map<String, Object> metadata;
     protected final T data;
 
@@ -57,7 +57,7 @@ public abstract class ApiResponse<T> {
      * @return
      */
     public String getError() {
-        return String.valueOf(metadata.get(KEY_METADATA_ERROR));
+        return String.valueOf(metadata.get(METADATA_ERROR_KEY));
     }
 
     /**
@@ -66,7 +66,7 @@ public abstract class ApiResponse<T> {
      * @return
      */
     public boolean hasError() {
-        return metadata.containsKey(KEY_METADATA_ERROR) && metadata.get(KEY_METADATA_ERROR) != null;
+        return metadata.containsKey(METADATA_ERROR_KEY) && metadata.get(METADATA_ERROR_KEY) != null;
     }
 
     /**
@@ -75,7 +75,7 @@ public abstract class ApiResponse<T> {
      * @return
      */
     public long getTimestamp() {
-        return ((Integer) metadata.get(KEY_METADATA_TIMESTAMP)).longValue();
+        return ((Integer) metadata.get(METADATA_TIMESTAMP_KEY)).longValue();
     }
 
 }

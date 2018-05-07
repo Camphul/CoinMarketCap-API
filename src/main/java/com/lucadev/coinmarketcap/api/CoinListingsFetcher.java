@@ -34,14 +34,38 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List
 
     @Override
     public CoinListingsApiResponse getApiResponse() {
-        long currentUnix = System.currentTimeMillis();
-        if (cachedResponse == null ||
-                cacheExpiryTimeout <= CACHE_EXPIRY_TIME_NO_CACHE ||
-                currentUnix > (cachedResponse.getTimestamp() +
-                        TimeUnit.SECONDS.convert(cacheExpiryTimeout, TimeUnit.MILLISECONDS))) {
+        if (isCacheExpired()) {
             cachedResponse = apiConnector.getApiResponse(CoinListingsApiResponse.class);
         }
         return cachedResponse;
+    }
+
+    /**
+     * Check if cache is expired.
+     * @return true when cache is expired.
+     */
+    private boolean isCacheExpired() {
+
+        //No cache available so return true to fetch
+        if(cachedResponse == null) {
+            return true;
+        }
+
+        //If cache is disabled
+        if(cacheExpiryTimeout <= CACHE_EXPIRY_TIME_NO_CACHE) {
+            return true;
+        }
+
+        long currentUnix = System.currentTimeMillis();
+        //Timestamp when cache should expire
+        long expiryUnix = currentUnix
+                + TimeUnit.SECONDS.convert(cacheExpiryTimeout, TimeUnit.MILLISECONDS);
+
+        if(currentUnix < expiryUnix) {
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -55,7 +79,8 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List
      * @param cacheExpiryTimeout
      * @param timeUnit
      */
-    public void setCacheExpiryTimeout(long cacheExpiryTimeout, TimeUnit timeUnit) {
+    public CoinListingsFetcher cacheExpiryTimeout(long cacheExpiryTimeout, TimeUnit timeUnit) {
         this.cacheExpiryTimeout = timeUnit.convert(cacheExpiryTimeout, TimeUnit.SECONDS);
+        return this;
     }
 }
