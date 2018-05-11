@@ -52,6 +52,7 @@ public class GlobalTicker implements Ticker<CoinMarketListApiResponse, CoinMarke
 
     /**
      * Add a price quote for the given currency
+     *
      * @param currency currency to convert price to
      * @return the current builder
      * @see <a href="https://coinmarketcap.com/api/">REST API Documentation</a> for more detailed documentation regarding the REST endpoint.

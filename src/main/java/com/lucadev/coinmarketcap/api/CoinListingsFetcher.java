@@ -1,10 +1,8 @@
 package com.lucadev.coinmarketcap.api;
 
-import com.lucadev.coinmarketcap.model.CoinListing;
 import com.lucadev.coinmarketcap.model.CoinListingList;
 import com.lucadev.coinmarketcap.model.CoinListingsApiResponse;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -43,17 +41,18 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, Coin
 
     /**
      * Check if cache is expired.
+     *
      * @return true when cache is expired.
      */
     private boolean isCacheExpired() {
 
         //No cache available so return true to fetch
-        if(cachedResponse == null) {
+        if (cachedResponse == null) {
             return true;
         }
 
         //If cache is disabled
-        if(cacheExpiryTimeout <= CACHE_EXPIRY_TIME_NO_CACHE) {
+        if (cacheExpiryTimeout <= CACHE_EXPIRY_TIME_NO_CACHE) {
             return true;
         }
 
@@ -62,7 +61,7 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, Coin
         long expiryUnix = currentUnix
                 + TimeUnit.SECONDS.convert(cacheExpiryTimeout, TimeUnit.MILLISECONDS);
 
-        if(currentUnix < expiryUnix) {
+        if (currentUnix < expiryUnix) {
             return true;
         }
 

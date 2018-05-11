@@ -26,6 +26,7 @@ public class CoinListingList implements List<CoinListing> {
 
     /**
      * Search through listings
+     *
      * @param id the listing id to search for
      * @return the {@link Optional} with our {@link CoinListing} result
      */
@@ -35,6 +36,7 @@ public class CoinListingList implements List<CoinListing> {
 
     /**
      * Search through listings
+     *
      * @param name the name of the listing. Case insensitive
      * @return the {@link Optional} with our {@link CoinListing} result
      */
@@ -44,6 +46,7 @@ public class CoinListingList implements List<CoinListing> {
 
     /**
      * Search through listings
+     *
      * @param symbol the symbol of the listing. Case insensitive
      * @return the {@link Optional} with our {@link CoinListing} result
      */
@@ -53,6 +56,7 @@ public class CoinListingList implements List<CoinListing> {
 
     /**
      * Search through listings
+     *
      * @param websiteSlug the website slug of the listing. Case insensitive
      * @return the {@link Optional} with our {@link CoinListing} result
      */
