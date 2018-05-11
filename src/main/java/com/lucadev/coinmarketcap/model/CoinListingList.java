@@ -20,6 +20,46 @@ public class CoinListingList implements List<CoinListing> {
         this.coinListings = coinListings;
     }
 
+    private Optional<CoinListing> search(Predicate<CoinListing> predicate) {
+        return coinListings.stream().filter(predicate).findFirst();
+    }
+
+    /**
+     * Search through listings
+     * @param id the listing id to search for
+     * @return the {@link Optional} with our {@link CoinListing} result
+     */
+    public Optional<CoinListing> getById(long id) {
+        return search(listing -> listing.getId() == id);
+    }
+
+    /**
+     * Search through listings
+     * @param name the name of the listing. Case insensitive
+     * @return the {@link Optional} with our {@link CoinListing} result
+     */
+    public Optional<CoinListing> getByName(String name) {
+        return search(listing -> listing.getName().equalsIgnoreCase(name));
+    }
+
+    /**
+     * Search through listings
+     * @param symbol the symbol of the listing. Case insensitive
+     * @return the {@link Optional} with our {@link CoinListing} result
+     */
+    public Optional<CoinListing> getBySymbol(String symbol) {
+        return search(listing -> listing.getSymbol().equalsIgnoreCase(symbol));
+    }
+
+    /**
+     * Search through listings
+     * @param websiteSlug the website slug of the listing. Case insensitive
+     * @return the {@link Optional} with our {@link CoinListing} result
+     */
+    public Optional<CoinListing> getByWebsiteSlug(String websiteSlug) {
+        return search(listing -> listing.getWebsiteSlug().equalsIgnoreCase(websiteSlug));
+    }
+
     @Override
     public int size() {
         return coinListings.size();

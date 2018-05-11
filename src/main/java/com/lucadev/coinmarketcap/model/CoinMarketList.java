@@ -34,12 +34,27 @@ public class CoinMarketList implements List<CoinMarket> {
      * @param marketId the id of the market such as: bitcoin, litecoin
      * @return a valid {@link CoinMarket} or null if we could not find a market.
      */
-    public CoinMarket findMarket(String marketId) {
+    public CoinMarket getByName(String marketId) {
         if (marketId == null || marketId.isEmpty()) {
             return null;
         }
         return marketList.stream()
                 .filter(market -> market.getName().equalsIgnoreCase(marketId))
+                .findFirst().orElse(null);
+    }
+
+    /**
+     * Find a market in the market list by linear searching through the list.
+     *
+     * @param symbol the symbol of the market such as BTC, LTC
+     * @return a valid {@link CoinMarket} or null if we could not find a market.
+     */
+    public CoinMarket getBySymbol(String symbol) {
+        if (symbol == null || symbol.isEmpty()) {
+            return null;
+        }
+        return marketList.stream()
+                .filter(market -> market.getSymbol().equalsIgnoreCase(symbol))
                 .findFirst().orElse(null);
     }
 

@@ -10,23 +10,22 @@ I have released this library onto maven central:
 <dependency>
     <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
-    <version>1.2</version>
+    <version>2.0</version>
 </dependency>
 ```
 
 ## Usage
 ```java
-//All the markets
-CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).get();
-coinMarkets.getMarkets().forEach(System.out::println);
+CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).convert(Currency.EUR).get();
+coinMarkets.forEach(System.out::println);
 
 //find a market
-CoinMarket bitcoinMarket = coinMarkets.findMarket("bitcoin");
-System.out.println(bitcoinMarket.getPriceUSD());
+CoinMarket bitcoinMarket = coinMarkets.getByName("bitcoin");
+System.out.println(bitcoinMarket.getUSDPriceQuote().getPrice());
 
 System.out.println("Specific Currency:");
 
-CoinMarket market = CoinMarketCap.ticker("litecoin").get();
+CoinMarket market = CoinMarketCap.ticker(1).get();
 System.out.println(market);
 ```
 
