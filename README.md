@@ -3,7 +3,7 @@
 
 An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
 
-Currently working on support for CMC API v2!!
+The library has been updated to work with API v2 from CMC. Please report any issues and/or feature requests here on github.
 ## Installation
 I have released this library onto maven central:
 ```
