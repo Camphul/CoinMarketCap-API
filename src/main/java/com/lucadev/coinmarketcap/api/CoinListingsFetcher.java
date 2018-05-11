@@ -1,6 +1,7 @@
 package com.lucadev.coinmarketcap.api;
 
 import com.lucadev.coinmarketcap.model.CoinListing;
+import com.lucadev.coinmarketcap.model.CoinListingList;
 import com.lucadev.coinmarketcap.model.CoinListingsApiResponse;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>
  * @since 6-5-18
  */
-public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List<CoinListing>> {
+public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, CoinListingList> {
 
     /**
      * Expiry of cache in seconds
@@ -69,7 +70,7 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, List
     }
 
     @Override
-    public List<CoinListing> get() {
+    public CoinListingList get() {
         return getApiResponse().getData();
     }
 
