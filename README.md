@@ -43,6 +43,7 @@ This project is developed under the GNU GPLv3 license. This license can be found
 
 - Add `CoinMarketCap.ticker(String)` method which simplifies `CoinMarketCap.ticker(Long)`
 - Improve test coverage
+- Cache evict method for coin listings
 
 ### 2.0
 
