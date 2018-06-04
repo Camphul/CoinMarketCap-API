@@ -1,5 +1,4 @@
 # CoinMarketCap-API
-[![Build Status](http://lucadev.com/jenkins/buildStatus/icon?job=CoinMarketCap-API)](https://github.com/Camphul/CoinMarketCap-API)
 
 An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
 
@@ -10,7 +9,7 @@ I have released this library onto maven central:
 <dependency>
     <groupId>com.lucadev</groupId>
     <artifactId>coinmarketcap-api</artifactId>
-    <version>2.0</version>
+    <version>2.1</version>
 </dependency>
 ```
 
@@ -27,12 +26,34 @@ System.out.println("Specific Currency:");
 
 CoinMarket market = CoinMarketCap.ticker(1).get();
 System.out.println(market);
+
+System.out.println("Specific currency by market name:");
+CoinMarket namedMarket = CoinMarketCap.ticker("bitcoin").get();
+System.out.println(namedMarket);
 ```
 
 An example implementation can be found in the maven test sources.
 
 ## License
 This project is developed under the GNU GPLv3 license. This license can be found under [LICENSE.txt](LICENSE.txt)
+
+## Changelog
+
+### 2.1
+
+- Add `CoinMarketCap.ticker(String)` method which simplifies `CoinMarketCap.ticker(Long)`
+- Improve test coverage
+
+### 2.0
+
+- Upgrade API implementation to match v2 CMC API
+- New models to match new API version
+- Caching for CoinListing
+
+### 1.*
+ 
+- Implement API v1
+- Upgrade JAXRS version
 
 ## Donations
 If you wish to donate to me please use the following addresses:

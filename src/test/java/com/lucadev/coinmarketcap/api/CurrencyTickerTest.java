@@ -1,7 +1,6 @@
 package com.lucadev.coinmarketcap.api;
 
 import com.lucadev.coinmarketcap.CoinMarketCap;
-import com.lucadev.coinmarketcap.api.CurrencyTicker;
 import com.lucadev.coinmarketcap.model.CoinMarket;
 import org.junit.Test;
 
@@ -24,6 +23,18 @@ public class CurrencyTickerTest {
         CoinMarket market = CoinMarketCap.ticker(expectedMarket).get();
         assertNotNull(market);
         assertEquals(expectedMarket, market.getId());
+    }
+
+
+    /**
+     * Should get a valid coin, assumes bitcoin
+     */
+    @Test
+    public void shouldGetValidCoinMarketResponseFromMarketName() {
+        String expectedMarket = "bitcoin";
+        CoinMarket market = CoinMarketCap.ticker(expectedMarket).get();
+        assertNotNull(market);
+        assertTrue(expectedMarket.equalsIgnoreCase(market.getName()));
     }
 
     /**

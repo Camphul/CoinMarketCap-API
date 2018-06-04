@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Example to show how to use the API. This is not a unit test.
+ *
  * @author Luca Camphuisen < Luca.Camphuisen@hva.nl >
  * @since 21-11-17
  */
@@ -18,7 +19,7 @@ public class CoinMarketCapExample {
     public static void main(String[] args) {
 
         System.out.println(Arrays.toString(Currency.values()));
-        CoinMarketList coinMarkets  = CoinMarketCap.ticker().setLimit(5).convert(Currency.EUR).get();
+        CoinMarketList coinMarkets = CoinMarketCap.ticker().setLimit(5).convert(Currency.EUR).get();
         coinMarkets.forEach(System.out::println);
 
         //find a market
@@ -29,6 +30,10 @@ public class CoinMarketCapExample {
 
         CoinMarket market = CoinMarketCap.ticker(1).get();
         System.out.println(market);
+
+        System.out.println("Specific currency by market name:");
+        CoinMarket namedMarket = CoinMarketCap.ticker("bitcoin").get();
+        System.out.println(namedMarket);
 
         System.out.println("Listings: ");
 
@@ -42,6 +47,6 @@ public class CoinMarketCapExample {
         long start = System.currentTimeMillis();
         List<CoinListing> listings = CoinMarketCap.listings().cacheExpiryTimeout(600, TimeUnit.SECONDS).get();
         long end = System.currentTimeMillis();
-        System.out.println("Fetch listings took: " + (end-start) + "ms, size: " + listings.size());
+        System.out.println("Fetch listings took: " + (end - start) + "ms, size: " + listings.size());
     }
 }

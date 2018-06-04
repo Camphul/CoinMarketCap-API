@@ -35,6 +35,17 @@ public final class CoinMarketCap {
     }
 
     /**
+     * Obtain a price ticker that can fetch one market at a time.
+     *
+     * @return a {@code /ticker/{id}/} API implementation. This argument requires the coin's name such as "bitcoin"
+     * @see <a href="https://coinmarketcap.com/api/">/ticker/{id} endpoint documentation.</a>
+     */
+    public static CurrencyTicker ticker(String marketName) {
+        return ticker(listings().get().getByName(marketName)
+                .orElseThrow(() -> new NullPointerException("No market found for name " + marketName)).getId());
+    }
+
+    /**
      * Coin listings
      *
      * @return

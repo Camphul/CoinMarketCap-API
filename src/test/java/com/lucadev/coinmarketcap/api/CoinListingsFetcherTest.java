@@ -1,12 +1,12 @@
 package com.lucadev.coinmarketcap.api;
 
-import com.lucadev.coinmarketcap.api.CoinListingsFetcher;
 import com.lucadev.coinmarketcap.model.CoinListingsApiResponse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>

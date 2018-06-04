@@ -4,7 +4,7 @@ import com.lucadev.coinmarketcap.api.CurrencyTicker;
 import com.lucadev.coinmarketcap.api.GlobalTicker;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Unit tests to see if the API base class {@link CoinMarketCap} works correctly.
@@ -29,6 +29,15 @@ public class CoinMarketCapTest {
     @Test
     public void shouldNotGetNullTicker() {
         CurrencyTicker currencyTicker = CoinMarketCap.ticker(1);
+        assertNotNull(currencyTicker);
+    }
+
+    /**
+     * Test if the {@link CoinMarketCap#ticker(long)} method returns a not-null value.
+     */
+    @Test
+    public void shouldNotGetNullTickerWithMarketName() {
+        CurrencyTicker currencyTicker = CoinMarketCap.ticker("bitcoin");
         assertNotNull(currencyTicker);
     }
 

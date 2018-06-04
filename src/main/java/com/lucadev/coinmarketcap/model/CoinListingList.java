@@ -16,6 +16,11 @@ public class CoinListingList implements List<CoinListing> {
 
     private final List<CoinListing> coinListings;
 
+    /**
+     * Construct from a {@link List}
+     *
+     * @param coinListings
+     */
     public CoinListingList(List<CoinListing> coinListings) {
         this.coinListings = coinListings;
     }
