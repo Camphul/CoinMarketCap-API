@@ -74,6 +74,15 @@ public class CoinListingsFetcher implements Ticker<CoinListingsApiResponse, Coin
     }
 
     /**
+     * Remove cache response, forcing the api to refetch when {@link #get()} is invoked.
+     * @return the current {@code CoinListingsFetcher}
+     */
+    public CoinListingsFetcher evictCache() {
+        this.cachedResponse = null;
+        return this;
+    }
+
+    /**
      * After how many time units should we refresh our cache
      *
      * @param cacheExpiryTimeout
