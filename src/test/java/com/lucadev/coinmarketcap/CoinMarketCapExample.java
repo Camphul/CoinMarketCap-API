@@ -34,7 +34,7 @@ public class CoinMarketCapExample {
         System.out.println("Specific currency by market name:");
         CoinMarket namedMarket = CoinMarketCap.ticker("bitcoin").get();
         System.out.println(namedMarket);
-
+        CoinMarketCap.listings().evictCache();
         System.out.println("Listings: ");
 
         measureListingRequestTime();

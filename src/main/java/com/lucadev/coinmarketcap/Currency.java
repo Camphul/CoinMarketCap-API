@@ -10,38 +10,38 @@ import java.util.Arrays;
  */
 public enum Currency {
 
-    AUD(CurrencyType.FIAT),
-    BRL(CurrencyType.FIAT),
-    CAD(CurrencyType.FIAT),
-    CHF(CurrencyType.FIAT),
-    CLP(CurrencyType.FIAT),
-    CNY(CurrencyType.FIAT),
-    CZK(CurrencyType.FIAT),
-    DKK(CurrencyType.FIAT),
-    EUR(CurrencyType.FIAT),
-    GBP(CurrencyType.FIAT),
-    HKD(CurrencyType.FIAT),
-    HUF(CurrencyType.FIAT),
-    IDR(CurrencyType.FIAT),
-    ILS(CurrencyType.FIAT),
-    INR(CurrencyType.FIAT),
-    JPY(CurrencyType.FIAT),
-    KRW(CurrencyType.FIAT),
-    MXN(CurrencyType.FIAT),
-    MYR(CurrencyType.FIAT),
-    NOK(CurrencyType.FIAT),
-    NZD(CurrencyType.FIAT),
-    PHP(CurrencyType.FIAT),
-    PKR(CurrencyType.FIAT),
-    PLN(CurrencyType.FIAT),
-    RUB(CurrencyType.FIAT),
-    SEK(CurrencyType.FIAT),
-    SGD(CurrencyType.FIAT),
-    THB(CurrencyType.FIAT),
-    TRY(CurrencyType.FIAT),
-    TWD(CurrencyType.FIAT),
-    ZAR(CurrencyType.FIAT),
-    USD(CurrencyType.FIAT),
+    AUD(),
+    BRL(),
+    CAD(),
+    CHF(),
+    CLP(),
+    CNY(),
+    CZK(),
+    DKK(),
+    EUR(),
+    GBP(),
+    HKD(),
+    HUF(),
+    IDR(),
+    ILS(),
+    INR(),
+    JPY(),
+    KRW(),
+    MXN(),
+    MYR(),
+    NOK(),
+    NZD(),
+    PHP(),
+    PKR(),
+    PLN(),
+    RUB(),
+    SEK(),
+    SGD(),
+    THB(),
+    TRY(),
+    TWD(),
+    ZAR(),
+    USD(),
     BTC(CurrencyType.CRYPTO),
     ETH(CurrencyType.CRYPTO),
     XRP(CurrencyType.CRYPTO),
@@ -51,6 +51,13 @@ public enum Currency {
     private static Currency[] fiatCurrencies;
     private static Currency[] cryptoCurrencies;
     private final CurrencyType type;
+
+    /**
+     * Defaults type to {@link CurrencyType#FIAT}
+     */
+    Currency() {
+        this(CurrencyType.FIAT);
+    }
 
     Currency(CurrencyType type) {
         this.type = type;
