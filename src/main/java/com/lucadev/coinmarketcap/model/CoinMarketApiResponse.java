@@ -1,6 +1,7 @@
 package com.lucadev.coinmarketcap.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Map;
@@ -11,6 +12,7 @@ import java.util.Map;
  * @author <a href="mailto:Luca.Camphuisen@hva.nl">Luca Camphuisen</a>
  * @since 6-5-18
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CoinMarketApiResponse extends ApiResponse<CoinMarket> {
 
     /**
