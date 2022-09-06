@@ -1,3 +1,7 @@
+# Deprecation notice
+
+This repositories has been inactive for a while and is no longer being maintained.
+
 # CoinMarketCap-API
 
 An API implementation written in Java for the [CoinMarketCap API](https://coinmarketcap.com/api/).
